@@ -23,7 +23,7 @@ const univers = localFont({
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={`${univers.variable} font-sans`}>
+    <main className={`${univers.variable} font-sans lg:bg-slate-300`}>
       <Component {...pageProps} />
     </main>
   );

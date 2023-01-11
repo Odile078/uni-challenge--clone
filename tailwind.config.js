@@ -12,6 +12,10 @@ module.exports = {
       colors: {
         brandBlue: {
           DEFAULT: "#004191",
+          light: "#00BEFF",
+        },
+        brandBlack: {
+          DEFAULT: "#333",
         },
       },
       fontFamily: {
