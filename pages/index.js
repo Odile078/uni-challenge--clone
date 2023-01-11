@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MdOutlineKeyboardArrowRight, MdSearch, MdMenu } from "react-icons/md";
+import {
+  MdOutlineKeyboardArrowRight,
+  MdSearch,
+  MdMenu,
+  MdClose,
+} from "react-icons/md";
 import { RiProfileLine } from "react-icons/ri";
 import {
   BsTelephone,
@@ -18,6 +23,10 @@ import { TfiEmail, TfiFacebook, TfiYoutube } from "react-icons/tfi";
 import { SlLocationPin } from "react-icons/sl";
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const handleOpenMenu = () => setMenuIsOpen(!menuIsOpen);
+
   useEffect(() => {
     const resize = () => {
       window.pageYOffset > 200 ? setScrolled(true) : setScrolled(false);
@@ -28,7 +37,7 @@ export default function Home() {
   return (
     <>
       <header className="max-w-7xl mx-auto ">
-        <div className="fixed z-20 inset-x-0 top-0 w-full ">
+        <div className="fixed bg-white z-20 inset-x-0 top-0 w-full hidden md:block">
           <div
             className={`px-6 md:px-16 mx-auto max-w-6xl bg-brand flex justify-end h-12 bg-brandBlue transition duration-75 ease-in-out  transform   ${
               scrolled ? "-translate-y-12" : ""
@@ -61,10 +70,76 @@ export default function Home() {
                 className="object-center object-cover"
                 alt="logo"
               />
-              <MdSearch className="text-2xl text-brandBlack" />
-              <button className="text-2xl text-brandBlack">
-                <MdMenu />
-              </button>
+              <MdSearch className="text-3xl text-brandBlack" />
+              {menuIsOpen ? (
+                <button
+                  className="text-3xl text-brandBlack"
+                  onClick={handleOpenMenu}
+                >
+                  <MdMenu className="text-3xl" />
+                </button>
+              ) : (
+                <button
+                  className="text-3xl text-white"
+                  onClick={handleOpenMenu}
+                >
+                  <MdClose className="text-3xl" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="bg-white fixed z-20 inset-x-0 top-0 w-full md:hidden">
+          <div
+            className={`px-6 md:px-16 mx-auto max-w-6xl bg-brand flex justify-between h-12 bg-brandBlue transition duration-75 ease-in-out  transform   ${
+              scrolled ? "-translate-y-12" : ""
+            }`}
+          >
+            <Link href="/" className="flex items-center gap-2 ">
+              <p className="text-xs text-white">Uni</p>
+              <div className="p-0.5 rounded-full border-white border">
+                <MdOutlineKeyboardArrowRight className="text-xs text-white" />
+              </div>
+            </Link>
+            <div className="flex gap-3 items-center ">
+              <Image
+                src="/images/www-student-removebg-preview.png"
+                width="44"
+                height="49"
+                className="object-center object-cover border-r border-r-white"
+                alt="logo"
+              />
+              <MdSearch className="text-2xl text-white" />
+            </div>
+          </div>
+          <div
+            className={`bg-white px-6 md:px-16 mx-auto max-w-6xl  transition duration-100 ease-in-out  transform flex justify-between items-center   ${
+              scrolled ? "py-6 -translate-y-12" : "py-10"
+            }`}
+          >
+            <Image
+              src="/svgs/logo-en.svg"
+              width="300"
+              height="61"
+              className="object-center object-cover w-40"
+              alt="logo"
+            />
+            <div className="flex gap-4 items-center">
+              {menuIsOpen ? (
+                <button
+                  className="text-3xl text-brandBlack"
+                  onClick={handleOpenMenu}
+                >
+                  <MdMenu className="text-3xl" />
+                </button>
+              ) : (
+                <button
+                  className="text-3xl text-brandBlack"
+                  onClick={handleOpenMenu}
+                >
+                  <MdClose className="text-3xl" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -83,12 +158,12 @@ export default function Home() {
 
           <Link
             href="/"
-            className="flex bg-transparent md:bg-brandBlack md:h-72 md:w-72  md:rounded-full group hover:bg-white items-center justify-center md:flex-col md:-mb-20 md:gap-20 md:pt-32"
+            className="flex bg-transparent md:bg-brandBlack md:h-72 md:w-72  md:rounded-full group md:hover:bg-white items-center justify-center md:flex-col md:-mb-20 md:gap-20 md:pt-32"
           >
             <div className="md:order-last">
-              <MdOutlineKeyboardArrowRight className="text-brandBlack text-lg md:text-white md:group-hover:text-brandBlack" />
+              <MdOutlineKeyboardArrowRight className="text-brandBlack text-xl md:text-white md:group-hover:text-brandBlack" />
             </div>
-            <p className="text-brandBlack md:text-center md:text-white group-hover:underline   md:group-hover:no-underline md:group-hover:text-brandBlack font-bold text-sm">
+            <p className="text-brandBlack mx-10 md:text-white group-hover:no-underline underline md:no-underline   md:group-hover:no-underline md:group-hover:text-brandBlack font-bold text-sm">
               INFORMATION FOR PROSPECTIVE STUDENTS
             </p>
           </Link>
@@ -207,7 +282,7 @@ export default function Home() {
                   date_2: "11/10/22",
                 },
                 {
-                  img: "/images/photocase.jpeg",
+                  img: "/public/images/instagram.jpeg",
                   title: "Newsticker: Information on the coronavirus",
                   date_1: "Article",
                   date_2: "11/10/22",
@@ -218,7 +293,10 @@ export default function Home() {
                   date_2: "11/10/22",
                 },
               ].map((e, i) => (
-                <div key="i" className="space-y-5 p-5 bg-white">
+                <div
+                  key="i"
+                  className="space-y-5  bg-white hover:bg-brandBlue-light"
+                >
                   {e?.img ? (
                     <div>
                       <Image
@@ -230,11 +308,13 @@ export default function Home() {
                       />
                     </div>
                   ) : null}
-                  <h5 className="text-lg font-bold">{e.title}</h5>
-                  <div class="flex gap-2 text-gray-500 text-base">
-                    <p class="">{e.date_1}</p>
-                    <p>|</p>
-                    <p class="">{e.date_2}</p>
+                  <div className="p-5">
+                    <h5 className="text-lg font-bold">{e.title}</h5>
+                    <div class="flex gap-2 text-gray-500 text-base">
+                      <p class="">{e.date_1}</p>
+                      <p>|</p>
+                      <p class="">{e.date_2}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -253,8 +333,17 @@ export default function Home() {
                   date_1: "Article",
                   date_2: "11/10/22",
                 },
+                {
+                  img: "/images/diversity-kalender.jpeg",
+                  title: "Newsticker: Information on the coronavirus",
+                  date_1: "Article",
+                  date_2: "11/10/22",
+                },
               ].map((e, i) => (
-                <div key="i" className="space-y-5 p-5 bg-white">
+                <div
+                  key="i"
+                  className="space-y-5 bg-white hover:bg-brandBlue-light"
+                >
                   {e?.img ? (
                     <div>
                       <Image
@@ -268,11 +357,13 @@ export default function Home() {
                       />
                     </div>
                   ) : null}
-                  <h5 className="text-lg font-bold">{e.title}</h5>
-                  <div class="flex gap-2 text-gray-500 text-base">
-                    <p class="">{e.date_1}</p>
-                    <p>|</p>
-                    <p class="">{e.date_2}</p>
+                  <div className="p-5">
+                    <h5 className="text-lg font-bold">{e.title}</h5>
+                    <div class="flex gap-2 text-gray-500 text-base">
+                      <p class="">{e.date_1}</p>
+                      <p>|</p>
+                      <p class="">{e.date_2}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -287,13 +378,16 @@ export default function Home() {
                   date_2: "11/10/22",
                 },
                 {
-                  img: "/images/photocase.jpeg",
+                  img: "/images/Sim_Tech_Folge_03_Szene_27.jpeg",
                   title: "Newsticker: Information on the coronavirus",
                   date_1: "Article",
                   date_2: "11/10/22",
                 },
               ].map((e, i) => (
-                <div key="i" className="space-y-5 p-5 bg-white">
+                <div
+                  key="i"
+                  className="space-y-5 bg-white hover:bg-brandBlue-light"
+                >
                   {e?.img ? (
                     <div>
                       <Image
@@ -307,11 +401,13 @@ export default function Home() {
                       />
                     </div>
                   ) : null}
-                  <h5 className="text-lg font-bold">{e.title}</h5>
-                  <div class="flex gap-2 text-gray-500 text-base">
-                    <p class="">{e.date_1}</p>
-                    <p>|</p>
-                    <p class="">{e.date_2}</p>
+                  <div className="p-5">
+                    <h5 className="text-lg font-bold">{e.title}</h5>
+                    <div class="flex gap-2 text-gray-500 text-base">
+                      <p class="">{e.date_1}</p>
+                      <p>|</p>
+                      <p class="">{e.date_2}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -345,7 +441,10 @@ export default function Home() {
                   date_2: "11/10/22",
                 },
               ].map((e, i) => (
-                <div key="i" className="space-y-5 p-5 bg-white">
+                <div
+                  key="i"
+                  className="space-y-5 bg-white hover:bg-brandBlue-light"
+                >
                   {e?.img ? (
                     <div>
                       <Image
@@ -357,17 +456,19 @@ export default function Home() {
                       />
                     </div>
                   ) : null}
-                  <h5 className="text-lg font-bold">{e.title}</h5>
-                  <div class="flex gap-2 text-gray-500 text-base">
-                    <p class="">{e.date_1}</p>
-                    <p>|</p>
-                    <p class="">{e.date_2}</p>
+                  <div className="p-5">
+                    <h5 className="text-lg font-bold">{e.title}</h5>
+                    <div class="flex gap-2 text-gray-500 text-base">
+                      <p class="">{e.date_1}</p>
+                      <p>|</p>
+                      <p class="">{e.date_2}</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex gap-2 items-center justify-center">
+          <div className="flex gap-2 items-center mt-4 justify-center">
             <Link
               href="/"
               className="border border-white text-white text-base bg-brandBlack uppercase font-bold hover:bg-brandBlack px-8 py-3"
@@ -537,7 +638,7 @@ export default function Home() {
             </div>
             <div className="border border-brandBlack p-5 flex flex-col gap-8">
               <div className="flex items-center justify-center">
-                <div className="flex items-center justify-center rounded-full h-[150px] w-[150px] bg-gray-100">
+                <div className="flex items-center justify-center rounded-full h-[150px] w-[150px] bg-gray-200">
                   <SlLocationPin className="text-white text-5xl block" />
                 </div>
               </div>
@@ -569,7 +670,7 @@ export default function Home() {
             </div>
             <div className="border border-brandBlack p-5 flex flex-col gap-8 sm:col-span-2 lg:col-span-1">
               <div className="flex items-center justify-center ">
-                <div className="flex items-center justify-center rounded-full h-[150px] w-[150px] bg-gray-100">
+                <div className="flex items-center justify-center rounded-full h-[150px] w-[150px] bg-gray-300">
                   <SlLocationPin className="text-brandBlack text-5xl block" />
                 </div>
               </div>
