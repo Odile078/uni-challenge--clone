@@ -51,26 +51,42 @@ export default function Home() {
             </Link>
           </div>
           <div
-            className={`bg-white px-6 md:px-16 mx-auto max-w-6xl  transition duration-100 ease-in-out  transform flex justify-between items-center   ${
+            className={` px-6 md:px-16 mx-auto max-w-6xl  transition duration-100 ease-in-out  transform flex justify-between items-center   ${
               scrolled ? "py-6" : "py-10"
-            }`}
+            }  ${menuIsOpen ? "bg-brandBlack" : "bg-white"}`}
           >
-            <Image
-              src="/svgs/logo-en.svg"
-              width="300"
-              height="61"
-              className="object-center object-cover"
-              alt="logo"
-            />
-            <div className="flex gap-4 items-center">
+            {!menuIsOpen ? (
               <Image
-                src="/images/language-removebg-preview.png"
-                width="44"
-                height="49"
+                src="/svgs/logo-en.svg"
+                width="300"
+                height="61"
                 className="object-center object-cover"
                 alt="logo"
               />
-              <MdSearch className="text-3xl text-brandBlack" />
+            ) : (
+              <Image
+                src="/svgs/logo-inverted-en.svg"
+                width="300"
+                height="61"
+                className="object-center object-cover w-52"
+                alt="logo"
+              />
+            )}
+            <div className="flex gap-4 items-center">
+              {!menuIsOpen && (
+                <Image
+                  src="/images/language-removebg-preview.png"
+                  width="44"
+                  height="49"
+                  className="object-center object-cover"
+                  alt="logo"
+                />
+              )}
+              <MdSearch
+                className={`text-3xl  ${
+                  menuIsOpen ? "text-white" : "text-brandBlack"
+                }`}
+              />
               {!menuIsOpen ? (
                 <button
                   className="text-3xl text-brandBlack"
@@ -83,7 +99,7 @@ export default function Home() {
                   className="text-3xl text-brandBlack"
                   onClick={handleOpenMenu}
                 >
-                  <MdClose className="text-3xl" />
+                  <MdClose className="text-3xl text-white" />
                 </button>
               )}
             </div>
@@ -115,15 +131,25 @@ export default function Home() {
           <div
             className={`bg-white px-6 md:px-16 mx-auto max-w-6xl  transition duration-100 ease-in-out  transform flex justify-between items-center   ${
               scrolled ? "py-6 -translate-y-12" : "py-10"
-            }`}
+            } ${menuIsOpen ? "bg-brandBlack" : "bg-white"}`}
           >
-            <Image
-              src="/svgs/logo-en.svg"
-              width="300"
-              height="61"
-              className="object-center object-cover w-40"
-              alt="logo"
-            />
+            {!menuIsOpen ? (
+              <Image
+                src="/svgs/logo-en.svg"
+                width="300"
+                height="61"
+                className="object-center object-cover w-40"
+                alt="logo"
+              />
+            ) : (
+              <Image
+                src="/svgs/logo-inverted-en.svg"
+                width="300"
+                height="61"
+                className="object-center object-cover w-40"
+                alt="logo"
+              />
+            )}
             <div className="flex gap-4 items-center">
               {!menuIsOpen ? (
                 <button
@@ -137,7 +163,7 @@ export default function Home() {
                   className="text-3xl text-brandBlack"
                   onClick={handleOpenMenu}
                 >
-                  <MdClose className="text-3xl" />
+                  <MdClose className="text-3xl text-white" />
                 </button>
               )}
             </div>
