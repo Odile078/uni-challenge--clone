@@ -373,7 +373,7 @@ export default function Home() {
                   date_2: "11/10/22",
                 },
                 {
-                  img: "/public/images/instagram.jpeg",
+                  img: "/images/instagram.jpeg",
                   title: "Newsticker: Information on the coronavirus",
                   date_1: "Article",
                   date_2: "11/10/22",
