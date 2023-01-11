@@ -386,7 +386,7 @@ export default function Home() {
               ].map((e, i) => (
                 <div
                   key="i"
-                  className="space-y-5  bg-white hover:bg-brandBlue-light"
+                  className="space-y-5 cursor-pointer  bg-white hover:bg-brandBlue-light"
                 >
                   {e?.img ? (
                     <div>
@@ -433,7 +433,7 @@ export default function Home() {
               ].map((e, i) => (
                 <div
                   key="i"
-                  className="space-y-5 bg-white hover:bg-brandBlue-light"
+                  className="space-y-5 cursor-pointer bg-white hover:bg-brandBlue-light"
                 >
                   {e?.img ? (
                     <div>
@@ -477,7 +477,7 @@ export default function Home() {
               ].map((e, i) => (
                 <div
                   key="i"
-                  className="space-y-5 bg-white hover:bg-brandBlue-light"
+                  className="space-y-5 cursor-pointer bg-white hover:bg-brandBlue-light"
                 >
                   {e?.img ? (
                     <div>
@@ -534,7 +534,7 @@ export default function Home() {
               ].map((e, i) => (
                 <div
                   key="i"
-                  className="space-y-5 bg-white hover:bg-brandBlue-light"
+                  className="space-y-5 cursor-pointer bg-white hover:bg-brandBlue-light"
                 >
                   {e?.img ? (
                     <div>
