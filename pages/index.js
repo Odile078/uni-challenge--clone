@@ -36,11 +36,11 @@ export default function Home() {
 
   return (
     <>
-      <header className="max-w-7xl mx-auto ">
-        <div className="fixed bg-white z-20 inset-x-0 top-0 w-full hidden md:block">
+      <header className="max-w-7xl mx-auto relative  ">
+        <div className="fixed z-20 inset-x-0 top-0 w-full hidden md:block bg-slate-300">
           <div
-            className={`px-6 md:px-16 mx-auto max-w-6xl bg-brand flex justify-end h-12 bg-brandBlue transition duration-75 ease-in-out  transform   ${
-              scrolled ? "-translate-y-12" : ""
+            className={`px-6 md:px-16 mx-auto max-w-6xl bg-brand  justify-end h-12 bg-brandBlue transition duration-75 ease-in-out  transform   ${
+              scrolled ? "hidden" : "flex"
             }`}
           >
             <Link href="/" className="flex items-center gap-2 ">
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <div
             className={`bg-white px-6 md:px-16 mx-auto max-w-6xl  transition duration-100 ease-in-out  transform flex justify-between items-center   ${
-              scrolled ? "py-6 -translate-y-12" : "py-10"
+              scrolled ? "py-6" : "py-10"
             }`}
           >
             <Image
@@ -71,7 +71,7 @@ export default function Home() {
                 alt="logo"
               />
               <MdSearch className="text-3xl text-brandBlack" />
-              {menuIsOpen ? (
+              {!menuIsOpen ? (
                 <button
                   className="text-3xl text-brandBlack"
                   onClick={handleOpenMenu}
@@ -80,7 +80,7 @@ export default function Home() {
                 </button>
               ) : (
                 <button
-                  className="text-3xl text-white"
+                  className="text-3xl text-brandBlack"
                   onClick={handleOpenMenu}
                 >
                   <MdClose className="text-3xl" />
@@ -89,7 +89,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-white fixed z-20 inset-x-0 top-0 w-full md:hidden">
+        <div className=" fixed z-20 inset-x-0 top-0 w-full md:hidden">
           <div
             className={`px-6 md:px-16 mx-auto max-w-6xl bg-brand flex justify-between h-12 bg-brandBlue transition duration-75 ease-in-out  transform   ${
               scrolled ? "-translate-y-12" : ""
@@ -125,7 +125,7 @@ export default function Home() {
               alt="logo"
             />
             <div className="flex gap-4 items-center">
-              {menuIsOpen ? (
+              {!menuIsOpen ? (
                 <button
                   className="text-3xl text-brandBlack"
                   onClick={handleOpenMenu}
@@ -145,7 +145,72 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto mt-40">
+      <main className="max-w-6xl mx-auto mt-36">
+        <div className="relative mx-auto max-w-6xl ">
+          {menuIsOpen && (
+            <div
+              className={`h-screen w-full bg-black bg-opacity-75 sticky bottom-0 z-10 ${
+                scrolled ? "top-32" : "top-40"
+              }`}
+            >
+              <div className="fixed bg-black bg-opacity-75 pb-4 space-y-6">
+                <div className="mx-6 md:x-16 mt-28 w-40 h-0.5 bg-brandBlue-light"></div>
+
+                <ul className="max-w-[1110px] px-6 md:px-16 w-screen h-60 flex-1 flex flex-col  overflow-y-scroll mx-3">
+                  {[
+                    { name: "All study programs", url: "/all-study-programs" },
+                    { name: "Starting out", url: "/starting-out" },
+                    { name: "Study organization", url: "/study-organisation" },
+                    {
+                      name: "Examination organization",
+                      url: "/examination-organization",
+                    },
+                    { name: "Digital Services", url: "/digital-services" },
+                    { name: "Financing & stipends", url: "/" },
+                    { name: "International students in Stuttgart", url: "/" },
+                    { name: "International students in Stuttgart", url: "/" },
+                    { name: "Study abroad", url: "/" },
+                    { name: "Counseling", url: "/" },
+                    {
+                      name: "Internships, mentoring and getting on the career ladder",
+                      url: "/",
+                    },
+                    {
+                      name: "Additional programs & further education during studies",
+                      url: "/",
+                    },
+                    { name: "Getting involved", url: "/" },
+                    { name: "University A-Z", url: "/" },
+                    { name: "Contact", url: "/" },
+                  ].map((e, i) => (
+                    <li
+                      key={i}
+                      className={` border-white border-dashed  ${
+                        i !== 0 ? "border-t" : ""
+                      }`}
+                    >
+                      <Link
+                        href={e.url}
+                        className="hover:bg-brandBlue-light px-4 py-4 block"
+                      >
+                        {i === 0 ? (
+                          <p className="text-white text-xl">{e.name}</p>
+                        ) : (
+                          <div className="flex justify-between">
+                            <p className="text-white font-bold text-xl">
+                              {e.name}
+                            </p>
+                            <MdOutlineKeyboardArrowRight className="text-white " />
+                          </div>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
         <section className=" relative px-6 md:px-16 mx-auto max-w-6xl bg-brandBlue-light pb-16 pt-20 flex gap-10 md:gap-16 md:items-center flex-col md:flex-row">
           <div className="flex-1 space-y-8 ">
             <h1 className="font-bold text-3xl">Students</h1>
