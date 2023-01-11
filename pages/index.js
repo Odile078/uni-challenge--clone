@@ -395,7 +395,7 @@ export default function Home() {
                         height={220}
                         src={e.img}
                         alt="news Article"
-                        className="object-cover object-center w-full rounded-full "
+                        className="object-cover object-center w-full rounded-full p-4"
                       />
                     </div>
                   ) : null}
@@ -443,7 +443,7 @@ export default function Home() {
                         src={e.img}
                         alt="news Article"
                         className={`object-cover object-center w-full  ${
-                          i === 0 ? "" : "rounded-full"
+                          i === 0 ? "" : "rounded-full p-4"
                         }`}
                       />
                     </div>
@@ -486,8 +486,8 @@ export default function Home() {
                         height={i === 0 ? 400 : 220}
                         src={e.img}
                         alt="news Article"
-                        className={`object-cover object-center w-full  ${
-                          i === 0 ? "" : "rounded-full"
+                        className={`object-cover object-center w-full   ${
+                          i === 0 ? "" : "rounded-full p-4"
                         }`}
                       />
                     </div>
